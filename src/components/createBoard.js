@@ -1,25 +1,22 @@
-const CreateBoard = (setBoard) => {
+const createBoard = (width, setBoard) => {
 
   const colors = [
     "green",
     "blue",
     "red",
     "purple",
-    "brown",
-    "pink",
     "orange",
     "yellow",
   ];
 
-  const width = colors.length;
-  const newBoard = [];
+  const board = [];
 
   for (let i = 0; i < width * width; i++) {
     const randomIndex = Math.floor(Math.random() * colors.length);
-    newBoard.push(colors[randomIndex]);
+    board.push(colors[randomIndex]);
   }
 
-  setBoard(newBoard);
+  setBoard(board);
 };
 
-export default CreateBoard
+export default createBoard
