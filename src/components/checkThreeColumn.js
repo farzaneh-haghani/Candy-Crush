@@ -1,4 +1,4 @@
-const checkForThreeColumn = (width, board) => {
+const checkThreeColumn = (width, board) => {
   for (let i = 0; i < 48; i++) {
     const indexesOfThreeColumns = [i, i + width, i + width * 2];
     const colorOfFirstSquare = board[i];
@@ -9,4 +9,4 @@ const checkForThreeColumn = (width, board) => {
   }
 }
 
-export default checkForThreeColumn
+export default checkThreeColumn

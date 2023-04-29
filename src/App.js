@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import createBoard from './components/createBoard';
-import checkForThreeColumn from './components/checkForThreeColumn';
-import checkForFourColumn from './components/checkForFourColumn';
+import checkThreeColumn from './components/checkThreeColumn';
+import checkFourColumn from './components/checkFourColumn';
+import checkThreeRow from './components/checkThreeRow';
+import checkFourRow from './components/checkFourRow';
 
 
 function App() {
@@ -16,12 +18,14 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      checkForFourColumn(width, board);
-      checkForThreeColumn(width, board);
+      checkFourColumn(width, board);
+      checkFourRow(width, board);
+      checkThreeColumn(width, board);
+      checkThreeRow(width, board);
       setBoard([...board]);
     }, 100);
     return () => clearInterval(timer);
-  }, [checkForFourColumn, checkForThreeColumn, board]);
+  }, [board]);
 
 
   return (
