@@ -6,7 +6,7 @@ const checkFourColumn = (width, board) => {
     const colorOfFirstSquare = board[i];
     const isMatch = indexesOfFourColumns.every(square => board[square] === colorOfFirstSquare);
     if (isMatch) {
-      indexesOfFourColumns.forEach(square => board[square] = "");
+      indexesOfFourColumns.forEach(square => board[square] = "images/blank-candy.png");
     }
   }
 }

@@ -1,5 +1,5 @@
 const checkThreeRow = (width, board) => {
-  
+
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < width - 2; j++) {
       const firstIndex = j + (width * i);
@@ -7,7 +7,7 @@ const checkThreeRow = (width, board) => {
       const colorOfFirstSquare = board[firstIndex];
       const isMatch = indexesOfThreeRow.every(square => board[square] === colorOfFirstSquare);
       if (isMatch) {
-        indexesOfThreeRow.forEach(square => board[square] = "");
+        indexesOfThreeRow.forEach(square => board[square] = "images/blank-candy.png");
       }
     }
   }

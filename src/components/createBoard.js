@@ -1,9 +1,9 @@
-const createBoard = (width, colors, setBoard) => {
+const createBoard = (width, images, setBoard) => {
 
   const board = [];
   for (let i = 0; i < width * width; i++) {
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    board.push(colors[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * images.length);
+    board.push(images[randomIndex]);
   }
   setBoard(board);
 };

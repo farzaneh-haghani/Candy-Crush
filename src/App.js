@@ -13,15 +13,13 @@ function App() {
   const [squareReplaced, setSquareReplaced] = useState(null);
   const width = 8;
 
-
-
-  const colors = [
-    "green",
-    "blue",
-    "red",
-    "purple",
-    "orange",
-    "yellow",
+  const images = [
+    "images/blue-candy.png",
+    "images/green-candy.png",
+    "images/orange-candy.png",
+    "images/purple-candy.png",
+    "images/red-candy.png",
+    "images/yellow-candy.png"
   ];
 
   const dragStart = (e) => {
@@ -31,8 +29,6 @@ function App() {
   const dragDrop = (e) => {
     setSquareReplaced(e.target);
   }
-
-
 
   const dragEnd = () => {
     if (!squareReplaced) {
@@ -47,7 +43,7 @@ function App() {
     const isValidMoves = validMoves.includes(squareReplacedId);
 
     const checkingColors = () => {
-      const squareDraggedColor = squareDragged.style.backgroundColor;
+      const squareDraggedColor = squareDragged.getAttribute("src");
       const diff = squareDraggedId - squareReplacedId;
       let direction = "";
       if (diff === 1)
@@ -97,15 +93,13 @@ function App() {
     }
 
     if (isValidMoves && checkingColors()) {
-      board[squareDraggedId] = squareReplaced.style.backgroundColor;
-      board[squareReplacedId] = squareDragged.style.backgroundColor;
+      board[squareDraggedId] = squareReplaced.getAttribute("src");
+      board[squareReplacedId] = squareDragged.getAttribute("src");
     }
   }
 
-
-
   useEffect(() => {
-    createBoard(width, colors, setBoard);
+    createBoard(width, images, setBoard);
   }, []);
 
 
@@ -115,7 +109,7 @@ function App() {
       checkFourRow(width, board);
       checkThreeColumn(width, board);
       checkThreeRow(width, board);
-      moveBelow(width, colors, board);
+      moveBelow(width, images, board);
       setBoard([...board]);
     }, 100);
     return () => clearInterval(timer);
@@ -125,12 +119,12 @@ function App() {
   return (
     <div className="flex p-30">
       <div className='flex flex-wrap w-[560px] h-[560px]  border-solid border-black absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
-        {board.map((eachColor, index) => {
+        {board.map((eachImage, index) => {
           return (
             <img
               key={index}
-              style={{ backgroundColor: eachColor }}
-              alt={eachColor}
+              src={eachImage}
+              alt=""
               className='w-[70px] h-[70px]'
               data-id={index}
               draggable={true}
