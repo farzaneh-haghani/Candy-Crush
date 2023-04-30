@@ -1,5 +1,7 @@
 const checkThreeColumn = (width, board) => {
-  for (let i = 0; i < 48; i++) {
+
+  const lastIndex = (width * width) - (width * 2);
+  for (let i = 0; i < lastIndex; i++) {
     const indexesOfThreeColumns = [i, i + width, i + width * 2];
     const colorOfFirstSquare = board[i];
     const isMatch = indexesOfThreeColumns.every(square => board[square] === colorOfFirstSquare);

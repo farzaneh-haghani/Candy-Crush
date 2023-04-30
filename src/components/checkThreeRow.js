@@ -1,7 +1,8 @@
 const checkThreeRow = (width, board) => {
-  for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 6; j++) {
-      let firstIndex = j + (width * i);
+  
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < width - 2; j++) {
+      const firstIndex = j + (width * i);
       const indexesOfThreeRow = [firstIndex, firstIndex + 1, firstIndex + 2];
       const colorOfFirstSquare = board[firstIndex];
       const isMatch = indexesOfThreeRow.every(square => board[square] === colorOfFirstSquare);
