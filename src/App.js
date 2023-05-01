@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
-import createBoard from './components/createBoard';
-import checkThreeColumn from './components/checkThreeColumn';
-import checkFourColumn from './components/checkFourColumn';
-import checkThreeRow from './components/checkThreeRow';
-import checkFourRow from './components/checkFourRow';
-import moveBelow from './components/moveBelow';
+import createBoard from './modules/createBoard';
+import checkThreeColumn from './modules/checkThreeColumn';
+import checkFourColumn from './modules/checkFourColumn';
+import checkThreeRow from './modules/checkThreeRow';
+import checkFourRow from './modules/checkFourRow';
+import moveBelow from './modules/moveBelow';
+import ScoreBoard from './component/ScoreBoard';
 
 
 function App() {
   const [board, setBoard] = useState([]);
   const [squareDragged, setSquareDragged] = useState(null);
   const [squareReplaced, setSquareReplaced] = useState(null);
+  const [scoreDisplay, setScoreDisplay] = useState(0);
   const width = 8;
 
   const images = [
@@ -95,6 +97,7 @@ function App() {
     if (isValidMoves && checkingColors()) {
       board[squareDraggedId] = squareReplaced.getAttribute("src");
       board[squareReplacedId] = squareDragged.getAttribute("src");
+      setBoard([...board]);
     }
   }
 
@@ -105,10 +108,10 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      checkFourColumn(width, board);
-      checkFourRow(width, board);
-      checkThreeColumn(width, board);
-      checkThreeRow(width, board);
+      checkFourColumn(width, board, setScoreDisplay);
+      checkFourRow(width, board, setScoreDisplay);
+      checkThreeColumn(width, board, setScoreDisplay);
+      checkThreeRow(width, board, setScoreDisplay);
       moveBelow(width, images, board);
       setBoard([...board]);
     }, 100);
@@ -117,8 +120,8 @@ function App() {
 
 
   return (
-    <div className="flex p-30">
-      <div className='flex flex-wrap w-[560px] h-[560px]  border-solid border-black absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
+    <div className="flex justify-center items-center h-full m-0 p-0">
+      <div className='flex flex-wrap w-[560px] h-[560px]'>
         {board.map((eachImage, index) => {
           return (
             <img
@@ -138,6 +141,7 @@ function App() {
           )
         })}
       </div>
+      <ScoreBoard score={scoreDisplay} />
     </div>
   );
 }
