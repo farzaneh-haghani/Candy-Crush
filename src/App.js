@@ -120,24 +120,26 @@ function App() {
 
 
   return (
-    <div className="flex justify-center items-center h-full m-0 p-0">
-      <div className='flex flex-wrap w-[560px] h-[560px]'>
+    <div className="flex justify-center items-center h-full m-0 pt-5 sm:flex-col xl:flex-row">
+      <div className='flex flex-wrap sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] xl:w-[560px] xl:h-[560px] '>
         {board.map((eachImage, index) => {
           return (
-            <img
-              key={index}
-              src={eachImage}
-              alt=""
-              className='w-[70px] h-[70px]'
-              data-id={index}
-              draggable={true}
-              onDragStart={dragStart}
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnter={(e) => e.preventDefault()}
-              onDragLeave={(e) => e.preventDefault()}
-              onDrop={dragDrop}
-              onDragEnd={dragEnd}
-            />
+            <div className='imageContainer'>
+              <img
+                key={index}
+                src={eachImage}
+                alt=""
+                className='sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px] xl:w-[70px] xl:h-[70px]'
+                data-id={index}
+                draggable={true}
+                onDragStart={dragStart}
+                onDragOver={(e) => e.preventDefault()}
+                onDragEnter={(e) => e.preventDefault()}
+                onDragLeave={(e) => e.preventDefault()}
+                onDrop={dragDrop}
+                onDragEnd={dragEnd}
+              />
+            </div>
           )
         })}
       </div>
